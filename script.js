@@ -1,4 +1,10 @@
-score = 0
+score = 0;
+cross = true;
+audio = new Audio('music.mp3');
+audiogo = new Audio('gameover.mp3');
+setTimeout(() => {
+    audio.play();
+}, 1000);
 document.onkeydown = function(e) {
     console.log("Key Code is ", e.keyCode)
     if(e.keyCode == 38){
@@ -33,17 +39,33 @@ setInterval(()=>{
     
     offsetX = Math.abs(dx-ox);
     offsetY = Math.abs(dy-oy);
-    console.log(offsetX, offsetY)
+    // console.log(offsetX, offsetY)
     if(offsetX < 93 && offsetY < 52){
-        gameOver.style.visibility = "visible";
-        obstacle.classList.remove('obstacleAnimate')
+        gameOver.innerHTML = "Game Over - Reload to Play Again";
+        obstacle.classList.remove('obstacleAnimate');
+        audiogo.play();
+        setTimeout(() => {
+            audiogo.pause();
+            audio.pause();
+        }, 1000);
     }
-    else {
+    else if(offsetX < 145 && cross) {
         score +=1;
-        updateScore(score)
+        updateScore(score);
+        cross = false;
+        setTimeout(() => {
+            cross = true
+        }, 1000);
+
+        setTimeout(() => {
+            animationDuration = parseFloat(window.getComputedStyle(obstacle, null).getPropertyValue('animation-duration'));
+            newDuration = animationDuration - 0.1;
+            obstacle.style.animationDuration = newDuration + 's';
+            console.log(newDuration)
+        }, 500);
     }
 
-}, 100)
+}, 10)
 
 function updateScore(score){
     scoreCount.innerHTML = "Your score: " + score

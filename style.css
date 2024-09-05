@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
 * {
     margin: 0;
     padding: 0;
-}
+    font-family: "Ubuntu", sans-serif;}
 
 body {
     overflow: hidden;
@@ -38,7 +39,20 @@ body {
 }
 
 .gameOver {
-    visibility: hidden;
+    position: relative;
+    top: 63px;
+    font-size: 53px;
+    text-align: center;
+    font-family: "Ubuntu", sans-serif;
+}
+#scoreCount {
+    position: absolute;
+    right: 45px;
+    top: 31px;
+    font-weight: bold;
+    border: 2px solid black;
+    padding: 10px;
+    font-family: "Ubuntu", sans-serif;
 }
 
 .animateDino {
